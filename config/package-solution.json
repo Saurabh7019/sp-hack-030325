@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "SP Hack 030325",
+    "id": "69151121-ba67-4c9c-9332-1972b3329355",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.21.0-beta.0"
+    },
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "Files.ReadWrite.All"
+      }
+    ],
+    "metadata": {
+      "shortDescription": {
+        "default": "Contains components for Intranet portal designed for SharePoint Hackathon"
+      },
+      "longDescription": {
+        "default": "Contains components for Intranet portal designed for SharePoint Hackathon"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "SP Hackathon Feature",
+        "description": "The feature that activates elements of the SP Hack 030325 solution for the SharePoint Hackathon.",
+        "id": "ff477728-7061-422e-b5ea-6293c7de82f3",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-hack-030325.sppkg"
+  }
+}

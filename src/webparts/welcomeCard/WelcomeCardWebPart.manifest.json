@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "d4c396ef-6fec-400b-bf9e-6df120ab260e",
+  "alias": "WelcomeCardWebPart",
+  "componentType": "WebPart",
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+  "flexibleLayoutSizing": {
+    "supportsDynamicResizing": true,
+    "defaultRowHeight": 10,
+    "defaultColumnWidth": 10
+  },
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Advanced" },
+    "title": { "default": "Welcome Card" },
+    "description": { "default": "A sleek, three-column welcome card displaying user details, tasks, and permissions with a modern, minimalist design." },
+    "officeFabricIconFontName": "ContactCard",
+    "properties": {
+      "description": "Welcome card"
+    }
+  }]
+}

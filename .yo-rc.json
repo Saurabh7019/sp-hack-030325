@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": true,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.5",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.24.0"
+    },
+    "version": "1.21.0-beta.0",
+    "libraryName": "sp-hack-030325",
+    "libraryId": "69151121-ba67-4c9c-9332-1972b3329355",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "sp-hack-030325",
+    "solutionShortDescription": "sp-hack-030325 description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
