@@ -10,6 +10,7 @@ declare interface IWelcomeCardWebPartStrings {
   AppOfficeEnvironment: string;
   AppOutlookEnvironment: string;
   UnknownEnvironment: string;
+  SummaryApiEndpoint: string;
 }
 
 declare module 'WelcomeCardWebPartStrings' {

@@ -1,13 +1,19 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
+import {
+  type IPropertyPaneConfiguration,
+  PropertyPaneTextField
+} from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
+import * as strings from 'WelcomeCardWebPartStrings';
 import { MSGraphClientV3, HttpClient } from '@microsoft/sp-http';
 import WelcomeCard from './components/WelcomeCard';
 import { IWelcomeCardProps } from './components/IWelcomeCardProps';
 
 export interface IWelcomeCardWebPartProps {
+  SummaryApiEndpoint: string;
 }
 
 export default class WelcomeCardWebPart extends BaseClientSideWebPart<IWelcomeCardWebPartProps> {
@@ -31,7 +37,8 @@ export default class WelcomeCardWebPart extends BaseClientSideWebPart<IWelcomeCa
         tenantName: tenantName,
         graphHttpClient: this._graphClient,
         httpClient: this._httpClient,
-        serviceScope: this.context.serviceScope
+        serviceScope: this.context.serviceScope,
+        SummaryApiEndpoint: this.properties.SummaryApiEndpoint
       }
     );
 
@@ -67,5 +74,27 @@ export default class WelcomeCardWebPart extends BaseClientSideWebPart<IWelcomeCa
 
   protected get dataVersion(): Version {
     return Version.parse('1.0');
+  }
+
+  protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+    return {
+      pages: [
+      {
+        header: {
+        description: strings.PropertyPaneDescription
+        },
+        groups: [
+        {
+          groupName: strings.BasicGroupName,
+          groupFields: [
+          PropertyPaneTextField('SummaryApiEndpoint', {
+            label: strings.SummaryApiEndpoint
+          })
+          ]
+        }
+        ]
+      }
+      ]
+    };
   }
 }

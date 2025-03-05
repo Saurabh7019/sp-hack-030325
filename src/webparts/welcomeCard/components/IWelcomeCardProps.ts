@@ -10,4 +10,5 @@ export interface IWelcomeCardProps {
   graphHttpClient: MSGraphClientV3;
   httpClient: HttpClient;
   serviceScope: ServiceScope;
+  SummaryApiEndpoint: string;
 }
