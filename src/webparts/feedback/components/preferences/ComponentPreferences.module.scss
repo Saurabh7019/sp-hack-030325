@@ -1,0 +1,40 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.preferences{
+    list-style: none;
+    padding: 0;
+
+    li {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2px;
+        padding: 10px;
+        border-bottom: 1px solid #cdcdcd;
+
+        i {
+            font-size: 18px;
+            color: #240041;
+        }
+
+        .leftContent {
+            display: flex;
+            align-items: center;
+
+            >span {
+                margin-left: 10px;
+            }
+        }
+
+        .rightContent {
+            display: flex;
+            align-items: center;
+
+            >i {
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}

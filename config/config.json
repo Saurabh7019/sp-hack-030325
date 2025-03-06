@@ -17,11 +17,20 @@
           "manifest": "./src/webparts/guidedSiteTour/GuidedSiteTourWebPart.manifest.json"
         }
       ]
+    },
+    "feedback-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/feedback/FeedbackWebPart.js",
+          "manifest": "./src/webparts/feedback/FeedbackWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
     "WelcomeCardWebPartStrings": "lib/webparts/welcomeCard/loc/{locale}.js",
-    "GuidedSiteTourWebPartStrings": "lib/webparts/guidedSiteTour/loc/{locale}.js"
+    "GuidedSiteTourWebPartStrings": "lib/webparts/guidedSiteTour/loc/{locale}.js",
+    "FeedbackWebPartStrings": "lib/webparts/feedback/loc/{locale}.js"
   }
 }

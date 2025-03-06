@@ -18,6 +18,6 @@
     "isDomainIsolated": false,
     "componentType": "webpart",
     "template": "react",
-    "componentName": "GuidedSiteTour"
+    "componentName": "feedback"
   }
 }
