@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/welcomeCard/WelcomeCardWebPart.manifest.json"
         }
       ]
+    },
+    "guided-site-tour-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/guidedSiteTour/GuidedSiteTourWebPart.js",
+          "manifest": "./src/webparts/guidedSiteTour/GuidedSiteTourWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "WelcomeCardWebPartStrings": "lib/webparts/welcomeCard/loc/{locale}.js"
+    "WelcomeCardWebPartStrings": "lib/webparts/welcomeCard/loc/{locale}.js",
+    "GuidedSiteTourWebPartStrings": "lib/webparts/guidedSiteTour/loc/{locale}.js"
   }
 }

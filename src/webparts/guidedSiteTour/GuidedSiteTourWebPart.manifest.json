@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "19adc0ad-98a2-412a-b059-a769310c10ca",
+  "alias": "GuidedSiteTourWebPart",
+  "componentType": "WebPart",
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+  "flexibleLayoutSizing": {
+    "supportsDynamicResizing": true,
+    "defaultRowHeight": 5,
+    "defaultColumnWidth": 5
+  },
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", 
+    "group": { "default": "Advanced" },
+    "title": { "default": "Guided Site Tour" },
+    "description": { "default": "This component offers a brief introduction to the key components present on the page." },
+    "officeFabricIconFontName": "PlaySolid",
+    "properties": {
+      "description": "Guided Site Tour"
+    }
+  }]
+}

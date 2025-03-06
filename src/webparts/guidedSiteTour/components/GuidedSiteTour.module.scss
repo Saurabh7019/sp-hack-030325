@@ -1,0 +1,87 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.guidedSiteTour {
+  overflow: hidden;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+
+  &.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+}
+
+.customButton {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid rgb(89, 42, 127);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: inherit;
+  width: 100%;
+}
+
+.thumbnail {
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  line-height: 22px;
+  flex: 0 0 auto;
+  margin: 0px 12px;
+  align-self: center;
+}
+
+.buttonContent {
+  flex: 1;
+  text-align: left;
+}
+
+.buttonTitle {
+  color: rgb(36, 36, 36);
+  line-height: 20px;
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.buttonDescription {
+  color: rgb(36, 36, 36);
+  line-height: 19px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.customButton:hover {
+  background-color: rgb(189, 162, 211);
+}
+
+.header {
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 24px;
+  font-weight: 600;
+  flex: 1 1 auto;
+  color: rgb(50, 49, 48);
+  display: flex;
+  align-items: center;
+  padding: 0 12px 14px 0;
+}
+
+.chkBox {
+  top: 10px;
+}
+
+.circleIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; 
+  height: 32px; 
+  border-radius: 50%;
+  background-color: #000000; 
+  color: white;
+  cursor: pointer;
+  border: 2px solid white;
+  font-size: 16px;
+}

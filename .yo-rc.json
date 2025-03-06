@@ -1,7 +1,7 @@
 {
   "@microsoft/generator-sharepoint": {
     "plusBeta": true,
-    "isCreatingSolution": true,
+    "isCreatingSolution": false,
     "nodeVersion": "18.20.5",
     "sdksVersions": {
       "@microsoft/microsoft-graph-client": "3.0.2",
@@ -16,6 +16,8 @@
     "solutionShortDescription": "sp-hack-030325 description",
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
-    "componentType": "webpart"
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "GuidedSiteTour"
   }
 }

@@ -81,49 +81,46 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
           {escape(greeting)}, {escape(userDisplayName)}!
         </div>
         <div className={styles.container}>
-          <div className={styles.profile}>
+          <div id='profilePicture' className={styles.profile}>
             <a href={delveUrl} target='_blank' rel='noreferrer'>
               <img src={this.state.profilePhotoUrl || this.defaultProfilePictureUrl} alt={`Profile Picture for ${userDisplayName}`} className={styles.profilePicture} />
             </a>
           </div>
 
           <div className={styles.info}>
-            <div className={styles.textContent} style={{ color: isDarkTheme ? 'white' : 'black', display: 'none' }}>
-              You last changed your password on {this.state.lastPasswordChangeDate}.
-              Would you like to <a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx">Reset</a> it now for enhanced security?
-            </div>
-
-            <h3>Email Summary</h3>
-            <p>
-              {this.state.summaries.emailSummary ? (
-                <span dangerouslySetInnerHTML={{ __html: this.state.summaries.emailSummary }} />
-              ) : (
-                <ThemeProvider className={wrapperClass}>
-                  <Shimmer width="90%" />
-                  <Shimmer width="70%" />
-                </ThemeProvider>
-              )}
-            </p>
-
-            <h3>Upcoming Events</h3>
-            <p>
-              {this.state.summaries.eventSummary ? (
-                <span dangerouslySetInnerHTML={{ __html: this.state.summaries.eventSummary }} />
-              ) : (
-                <ThemeProvider className={wrapperClass}>
-                  <Shimmer width="70%" />
-                  <Shimmer width="90%" />
-                </ThemeProvider>
-              )}
-            </p>
-          </div>
-
-          {/* <div className={styles.info}>
             <div className={styles.textContent} style={{ color: isDarkTheme ? 'white' : 'black' }}>
               You last changed your password on {this.state.lastPasswordChangeDate}.
-              Would you like to <a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx">Reset</a> it now for enhanced security?
+              Would you like to <a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx">Reset</a> it now?
             </div>
-          </div> */}
+
+            <span id='emailSummary'>
+              <h3>Email Summary</h3>
+              <p>
+                {this.state.summaries.emailSummary ? (
+                  <span dangerouslySetInnerHTML={{ __html: this.state.summaries.emailSummary }} />
+                ) : (
+                  <ThemeProvider className={wrapperClass}>
+                    <Shimmer width="90%" />
+                    <Shimmer width="70%" />
+                  </ThemeProvider>
+                )}
+              </p>
+            </span>
+
+            <span id='eventSummary'>
+              <h3>Upcoming Events</h3>
+              <p>
+                {this.state.summaries.eventSummary ? (
+                  <span dangerouslySetInnerHTML={{ __html: this.state.summaries.eventSummary }} />
+                ) : (
+                  <ThemeProvider className={wrapperClass}>
+                    <Shimmer width="70%" />
+                    <Shimmer width="90%" />
+                  </ThemeProvider>
+                )}
+              </p>
+            </span>
+          </div>
 
           <div className={styles.permissions}>
             <p>Permissions are success..</p>
