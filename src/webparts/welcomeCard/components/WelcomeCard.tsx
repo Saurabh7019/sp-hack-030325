@@ -5,7 +5,21 @@ import type { IWelcomeCardState } from './IWelcomeCardState';
 import { IWelcomeCardService } from '../services/IWelcomeCardService';
 import { WelcomeCardService } from '../services/WelcomeCardService';
 import { escape } from '@microsoft/sp-lodash-subset';
-import { Shimmer, ThemeProvider, mergeStyles } from '@fluentui/react';
+import {
+  Shimmer,
+  ThemeProvider,
+  mergeStyles,
+  mergeStyleSets,
+  Callout,
+  ActivityItem,
+  Link,
+  css,
+  ActionButton,
+  IIconProps
+} from '@fluentui/react';
+import { Icon } from '@fluentui/react/lib/Icon';
+
+const addFriendIcon: IIconProps = { iconName: 'AddLink', style: { color: 'white' } };
 
 const wrapperClass = mergeStyles({
   padding: 2,
@@ -13,8 +27,161 @@ const wrapperClass = mergeStyles({
     '& > .ms-Shimmer-container': {
       margin: '10px 0',
     },
+  }
+});
+
+const classNames = mergeStyleSets({
+  exampleRoot: {
+    marginTop: '20px',
+    borderBottom: '1px solid #f3f2f1',
+    paddingBottom: '5px',
+  },
+  nameText: {
+    fontWeight: 'bold',
   },
 });
+
+const activityItemExamples = [
+  {
+    key: 1,
+    activityDescription: [
+      <Link
+        key={1}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('A name was clicked.');
+        }}
+      >
+        Local Work
+      </Link>
+    ],
+    activityIcon: <Icon iconName={'DocumentSet'} />,
+    comments: [
+      <span key={1}>Permissions are successfully updated to your app Local Work in Access wording check. </span>,
+    ],
+    timeStamp: 'Just now',
+  },
+  {
+    key: 2,
+    activityDescription: [
+      <Link
+        key={1}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('A name was clicked.');
+        }}
+      >
+        Maconomy
+      </Link>
+    ],
+    activityIcon: <Icon iconName={'Money'} />,
+    comments: [
+      <span key={1}>Your invoice #45678 has been processed. Click </span>,
+      <Link
+        key={2}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('An @mentioned name was clicked.');
+        }}
+      >
+        here
+      </Link>,
+      <span key={3}> to review the details.</span>,
+    ],
+    timeStamp: '5 minutes ago',
+  },
+  {
+    key: 3,
+    activityDescription: [
+      <Link
+        key={1}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('A name was clicked.');
+        }}
+      >
+        Maconomy
+      </Link>
+    ],
+    activityIcon: <Icon iconName={'Warning'} />,
+    comments: [
+      <span key={1}>Approval required for expense report #78901. Click </span>,
+      <Link
+        key={2}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('An @mentioned name was clicked.');
+        }}
+      >
+        here
+      </Link>,
+      <span key={3}> to review and approve.</span>,
+    ],
+    timeStamp: '10 minutes ago',
+  },
+  {
+    key: 4,
+    activityDescription: [
+      <Link
+        key={1}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('A name was clicked.');
+        }}
+      >
+        IFS
+      </Link>
+    ],
+    activityIcon: <Icon iconName={'CheckMark'} />,
+    comments: [
+      <span key={1}>Your purchase order #12345 has been approved. Click </span>,
+      <Link
+        key={2}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('An @mentioned name was clicked.');
+        }}
+      >
+        here
+      </Link>,
+      <span key={3}> to view the details.</span>,
+    ],
+    timeStamp: '15 minutes ago',
+  },
+  {
+    key: 5,
+    activityDescription: [
+      <Link
+        key={1}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('A name was clicked.');
+        }}
+      >
+        SAP Concur
+      </Link>
+    ],
+    activityIcon: <Icon iconName={'Money'} />,
+    comments: [
+      <span key={1}>Your travel expense claim has been submitted for review. Click </span>,
+      <Link
+        key={2}
+        className={classNames.nameText}
+        onClick={() => {
+          alert('An @mentioned name was clicked.');
+        }}
+      >
+        here
+      </Link>,
+      <span key={3}> to track the status.</span>,
+    ],
+    timeStamp: '30 minutes ago',
+  }
+];
+
+// categories scrollable fading
+const cssClassesCategories = css(styles.categories, styles.scrollable);
+const cssClassesFavorites = css(styles.favorites, styles.scrollable);
 
 export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWelcomeCardState> {
   private _wcServiceInstance: IWelcomeCardService;
@@ -33,10 +200,20 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
       summaries: {
         emailSummary: '',
         eventSummary: ''
-      }
+      },
+      isCalloutVisible: false,
+      isAddFavoriteCalloutVisible: false
     }
 
     this._wcServiceInstance = new WelcomeCardService(serviceScope);
+  }
+
+  private toggleIsCalloutVisible = (): void => {
+    this.setState({ isCalloutVisible: !this.state.isCalloutVisible });
+  }
+
+  private toggleIsAddFavoriteCalloutVisible = (): void => {
+    this.setState({ isAddFavoriteCalloutVisible: !this.state.isAddFavoriteCalloutVisible });
   }
 
   public async componentDidMount(): Promise<void> {
@@ -88,14 +265,14 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
           </div>
 
           <div className={styles.info}>
-            <div className={styles.textContent} style={{ color: isDarkTheme ? 'white' : 'black' }}>
+            <div className={styles.textContent} style={{ color: 'black' }}>
               You last changed your password on {this.state.lastPasswordChangeDate}.
               Would you like to <a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx">Reset</a> it now?
             </div>
 
             <span id='emailSummary'>
               <h3>Email Summary</h3>
-              <p>
+              <p className={styles.summaryContainer} style={{ color: 'black' }}>
                 {this.state.summaries.emailSummary ? (
                   <span dangerouslySetInnerHTML={{ __html: this.state.summaries.emailSummary }} />
                 ) : (
@@ -109,7 +286,7 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
 
             <span id='eventSummary'>
               <h3>Upcoming Events</h3>
-              <p>
+              <p className={styles.summaryContainer} style={{ color: 'black' }}>
                 {this.state.summaries.eventSummary ? (
                   <span dangerouslySetInnerHTML={{ __html: this.state.summaries.eventSummary }} />
                 ) : (
@@ -122,11 +299,357 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
             </span>
           </div>
 
-          <div className={styles.permissions}>
-            <p>Permissions are success..</p>
+          <div className={styles.permissions} style={{ color: 'black' }}>
+            <p>Permissions are successful...
+              <span className={styles.iconContainer} id="ringerIcon" onClick={this.toggleIsCalloutVisible}>
+                <Icon iconName="Ringer" />
+                <span className={styles.badge}>5</span>
+              </span>
+            </p>
+            <div className={styles.quickLinks}>
+              <div className={styles.quickLinkItem} id="addFavoriteIcon" onClick={this.toggleIsAddFavoriteCalloutVisible}>
+                <Icon iconName="AddFavorite" className={styles.appIconCircleFav} style={{ color: "darkblue" }} />
+                <span style={{ color: "darkblue", fontWeight: 'bold' }}>Add Favorite</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="DocumentSet" className={styles.appIconCircleFav} />
+                <span>Time reporting</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="OfficeAssistantLogo" className={styles.appIconCircleFav} />
+                <span>Microsoft 365</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="SharepointLogo" className={styles.appIconCircleFav} />
+                <span>HR Hub</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="TaskLogo" className={styles.appIconCircleFav} />
+                <span>Trello</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="TimeSheet" className={styles.appIconCircleFav} />
+                <span>SmartSheet</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="LearningTools" className={styles.appIconCircleFav} />
+                <span>LinkedIn Learning</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="Money" className={styles.appIconCircleFav} />
+                <span>SAP Concur</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="AllCurrency" className={styles.appIconCircleFav} />
+                <span>Expensify</span>
+              </div>
+              <div className={styles.quickLinkItem}>
+                <Icon iconName="TaskManager" className={styles.appIconCircleFav} />
+                <span>Asana</span>
+              </div>
+            </div>
           </div>
-        </div>
 
+          {this.state.isCalloutVisible && (
+            <Callout
+              className={styles.callout}
+              role="dialog"
+              gapSpace={0}
+              target="#ringerIcon"
+              onDismiss={this.toggleIsCalloutVisible}
+              setInitialFocus
+            >
+              {activityItemExamples.map((item: { key: string | number }) => (
+                <ActivityItem {...item} key={item.key} className={classNames.exampleRoot} />
+              ))}
+            </Callout>
+          )}
+
+          {this.state.isAddFavoriteCalloutVisible && (
+            <Callout
+              className={styles.calloutQuickLink}
+              role="dialog"
+              gapSpace={0}
+              target="#addFavoriteIcon"
+              onDismiss={this.toggleIsAddFavoriteCalloutVisible}
+              setInitialFocus
+            >
+              <div className={styles.appLauncherDropdown}>
+                <div className={cssClassesCategories}>
+                  <div className={styles.linedName}>Time, Travel & Expenses</div>
+                  <div className={styles.categoryApps}>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
+                      className={styles.appButton}>
+                      <a href="/ifs" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="DocumentSet" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Time reporting</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Time reporting, business and management control</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
+                      className={styles.appButton}>
+                      <a href="https://accounts.mycwt.com/sp/startSSO.ping?PartnerIdpId=https%3A%2F%2Fsts.windows.net%2F58af3eba-510e-4544-8cfd-85f5e0206382%2F" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="Airplane" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Travel Booking</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Travel management and accommodation</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
+                      className={styles.appButton}>
+                      <a href="https://account.activedirectory.windowsazure.com/applications/signin/de2fae87-0d6c-4ba5-aa19-88ba2dda235c?tenantId=58af3eba-510e-4544-8cfd-85f5e0206382" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="Money" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>SAP Concur</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Systems for expenses, travel, and AP processes</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
+                      className={styles.appButton}>
+                      <a href="https://account.activedirectory.windowsazure.com/applications/signin/de2fae87-0d6c-4ba5-aa19-88ba2dda235c?tenantId=58af3eba-510e-4544-8cfd-85f5e0206382" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="Money" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>SAP Concur</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Systems for expenses, travel, and AP processes</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.expensify.com/" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="AllCurrency" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Expensify</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Expense management and reporting</div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className={styles.linedName}>Human Resources</div>
+                  <div className={styles.categoryApps}>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
+                      className={styles.appButton}>
+                      <a href="https://account.activedirectory.windowsazure.com/applications/signin/de2fae87-0d6c-4ba5-aa19-88ba2dda235c?tenantId=58af3eba-510e-4544-8cfd-85f5e0206382" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="AppIconDefaultList" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Sub-consultant app</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Register a new internal or external sub-consultant</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
+                      className={styles.appButton}>
+                      <a href="https://account.activedirectory.windowsazure.com/applications/signin/de2fae87-0d6c-4ba5-aa19-88ba2dda235c?tenantId=58af3eba-510e-4544-8cfd-85f5e0206382" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="ConnectContacts" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>PeopleDoc Employee Portal</div>
+                          </div>
+                          <div className={styles.descriptionApp}>HR requests and employment documents</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.workday.com/" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="WorkforceManagement" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Workday</div>
+                          </div>
+                          <div className={styles.descriptionApp}>HR and payroll management</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.linkedin.com/learning/" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="LearningTools" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>LinkedIn Learning</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Professional development and training</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://7566ava.sharepoint.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                        <Icon iconName="SharepointLogo" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>HR Hub</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Find HR services and information</div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className={styles.linedName}>Project Management</div>
+                  <div className={styles.categoryApps}>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.microsoft.com/en-us/microsoft-365/project/project-management-software" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="ProjectLogo32" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Microsoft Project</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Project planning and management</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.smartsheet.com/" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="TimeSheet" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Smartsheet</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Collaborative work management</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.asana.com/" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="TaskManager" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Asana</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Task and project management</div>
+                        </div>
+                      </a>
+                    </div>
+                    <div role="button" aria-disabled="false" aria-roledescription="draggable" className={styles.appButton}>
+                      <a href="https://www.trello.com/" target="_blank" rel="noreferrer" className={styles.app}>
+                        <Icon iconName="TaskLogo" className={styles.appIconCircle} />
+                        <div>
+                          <div className={styles.titleAndStar}>
+                            <div className={styles.titleApp}>Trello</div>
+                          </div>
+                          <div className={styles.descriptionApp}>Visual project management</div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+                <div className={cssClassesFavorites}>
+                  <div className={styles.linedName}>Favourites</div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="/ifs" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="DocumentSet" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>Time reporting</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://www.office.com/?auth=2&amp;home=1" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="OfficeAssistantLogo" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>Microsoft 365</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://7566ava.sharepoint.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="SharepointLogo" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>HR Hub</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://www.trello.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="TaskLogo" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>Trello</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://www.smartsheet.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="TimeSheet" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>Smartsheet</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://www.linkedin.com/learning/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="LearningTools" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>LinkedIn Learning</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://account.activedirectory.windowsazure.com/applications/signin/de2fae87-0d6c-4ba5-aa19-88ba2dda235c?tenantId=58af3eba-510e-4544-8cfd-85f5e0206382" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="Money" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>SAP Concur</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://www.expensify.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="AllCurrency" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>Expensify</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
+                    <a href="https://www.asana.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
+                      <Icon iconName="TaskManager" className={styles.appIconCircle} />
+                      <div>
+                        <div className={styles.titleAndStar}>
+                          <div className={styles.titleApp}>Asana</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <ActionButton iconProps={addFriendIcon} allowDisabledFocus className={styles.addCustomLinkButton}>
+                    Custom link
+                  </ActionButton>
+                </div>
+              </div>
+            </Callout>
+          )}
+        </div>
       </section>
     );
   }

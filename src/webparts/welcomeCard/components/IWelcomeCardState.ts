@@ -5,4 +5,6 @@ export interface IWelcomeCardState {
         emailSummary: string;
         eventSummary: string;
     };
+    isCalloutVisible: boolean;
+    isAddFavoriteCalloutVisible: boolean;
 }

@@ -67,14 +67,13 @@
 }
 
 .container {
-  width: 98%;
-  margin: 20px auto;
+  width: 100%;
   background: white;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -86,15 +85,16 @@
 }
 
 .profile img {
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .info {
-  flex: 2.25;
+  flex: 2.50;
   padding: 0 20px;
+  border-right: 1px solid black;
 }
 
 .info h2 {
@@ -107,18 +107,41 @@
   color: #333;
   margin: 0;
 }
+
 .info ul {
   padding: 0;
   list-style-type: none;
   margin: 5px 0;
 }
+
 .info ul li {
   padding: 5px 0;
 }
 
 .permissions {
-  flex: 1;
-  text-align: center;
+  flex: 0.75;
+  padding: 0 20px;
+  position: relative;
+  display: inline-block;
+  color: black;
+
+  .iconContainer {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+  }
 }
 
 .icons {
@@ -131,4 +154,239 @@
 .icons img {
   width: 40px;
   height: 40px;
+}
+
+.summaryContainer {
+  background-color: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+.callout {
+  max-width: 400px;
+  padding: 20px 24px;
+}
+
+.calloutQuickLink {
+  max-width: 90%;
+  padding: 20px 24px;
+}
+
+.title {
+  margin-bottom: 12px;
+  font-weight: lighter;
+}
+
+.link {
+  display: block;
+  margin-top: 20px;
+}
+
+.quickLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 20px;
+
+  .quickLinkItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: black;
+    font-size: 10px;
+    width: 25%;
+    margin-bottom: 20px;
+  }
+
+  .quickLinkIcon {
+    font-size: 30px;
+    margin-bottom: 5px;
+    color: black;
+  }
+}
+
+.appLauncherDropdown {
+  overflow-y: visible;
+  left: auto;
+  left: initial;
+  right: -95px;
+  width: 986px;
+  padding: 0;
+  flex-direction: row;
+  display: flex;
+  background-color: #fff;
+  padding: 0;
+  box-shadow: 0 1px 20px #53575e4d;
+}
+
+.categories {
+  order: 0;
+  overflow-y: auto;
+  flex: 0 0 627px;
+  padding: 47px 38px 16px 45px;
+}
+
+.scrollable {
+  -ms-overflow-style: auto;
+  scrollbar-color: #C8C8C8 white;
+  scrollbar-width: thin;
+}
+
+.favorites {
+  order: 0;
+  overflow-y: auto;
+  flex: 0 0 210px;
+  padding: 47px 39px 16px 48px;
+  border-left: 1px solid #C8C8C8;
+  display: flex;
+  flex-direction: column;
+}
+
+.linedName {
+  display: flex;
+  flex-direction: row;
+  color: #757575;
+  font-family: Verdana;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 20px;
+}
+
+.categoryApps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(266px, 1fr));
+  padding-bottom: 30px;
+}
+
+.linedName:after {
+  margin-left: 10px;
+}
+
+.linedName:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #C8C8C8;
+  margin: auto 10px;
+}
+
+.icon {
+  height: 48px;
+  width: 48px;
+  margin-right: 23px;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 10px 10px;
+}
+
+.descriptionApp {
+  color: #848484;
+  font-family: Verdana;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 158px;
+}
+
+.titleAndStar {
+  padding-bottom: 6px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.titleApp {
+  color: black;
+  font-family: Verdana;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.small .description {
+  display: none;
+}
+
+.appSmall {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.droppable {
+  order: 0;
+  overflow-y: auto;
+  flex: 0 0 210px;
+}
+
+.appIconCircle {
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  height: 45px;
+  justify-content: center;
+  width: 45px;
+  border: 1px solid;
+  margin-right: 23px;
+  font-size: 28px;
+  color: black;
+}
+
+.appIconCircleFav {
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  height: 45px;
+  justify-content: center;
+  width: 45px;
+  border: 1px solid;
+  font-size: 28px;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.appButton {
+  padding-bottom: 8px;
+}
+
+.addCustomLinkButton {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.addCustomLinkButton:hover {
+  background-color: #005a9e;
 }
