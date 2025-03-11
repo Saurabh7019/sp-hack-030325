@@ -109,8 +109,6 @@
 }
 
 .info ul {
-  padding: 0;
-  list-style-type: none;
   margin: 5px 0;
 }
 
@@ -389,4 +387,17 @@
 
 .addCustomLinkButton:hover {
   background-color: #005a9e;
+}
+
+.summaryHeader {
+  display: flex;
+  align-items: center;
+}
+
+.summaryIcon {
+  margin-right: 8px;
+  margin-top: 4px;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
 }

@@ -271,7 +271,10 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
             </div>
 
             <span id='emailSummary'>
-              <h3>Email Summary</h3>
+              <div className={styles.summaryHeader}>
+                <Icon iconName="Mail" className={styles.summaryIcon} />
+                <h3>Email summary</h3>
+              </div>
               <p className={styles.summaryContainer} style={{ color: 'black' }}>
                 {this.state.summaries.emailSummary ? (
                   <span dangerouslySetInnerHTML={{ __html: this.state.summaries.emailSummary }} />
@@ -285,7 +288,10 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
             </span>
 
             <span id='eventSummary'>
-              <h3>Upcoming Events</h3>
+            <div className={styles.summaryHeader}>
+                <Icon iconName="Calendar" className={styles.summaryIcon} />
+                <h3>Upcoming events</h3>
+              </div>
               <p className={styles.summaryContainer} style={{ color: 'black' }}>
                 {this.state.summaries.eventSummary ? (
                   <span dangerouslySetInnerHTML={{ __html: this.state.summaries.eventSummary }} />
