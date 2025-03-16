@@ -1,6 +1,6 @@
 {
   "name": "sp-hack-030325",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "private": true,
   "engines": {
     "node": ">=18.17.1 <19.0.0"
@@ -12,6 +12,7 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "@fluentui/example-data": "^8.4.25",
     "@fluentui/react": "^8.106.4",
     "@microsoft/sp-component-base": "1.21.0-beta.0",
     "@microsoft/sp-core-library": "1.21.0-beta.0",

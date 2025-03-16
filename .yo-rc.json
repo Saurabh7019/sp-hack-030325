@@ -16,8 +16,7 @@
     "solutionShortDescription": "sp-hack-030325 description",
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
-    "componentType": "webpart",
     "template": "react",
-    "componentName": "feedback"
+    "componentType": "webpart"
   }
 }

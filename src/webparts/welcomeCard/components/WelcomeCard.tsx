@@ -45,15 +45,17 @@ const activityItemExamples = [
   {
     key: 1,
     activityDescription: [
-      <Link
-        key={1}
-        className={classNames.nameText}
-        onClick={() => {
-          alert('A name was clicked.');
-        }}
-      >
-        Local Work
-      </Link>
+      <div className={styles.activityDescriptionWrapper} key={1}>
+        <Link
+          className={classNames.nameText}
+          onClick={() => {
+            alert('A name was clicked.');
+          }}
+        >
+          Local Work
+        </Link>
+        <Icon iconName="Cancel" className={styles.closeIcon} />
+      </div>
     ],
     activityIcon: <Icon iconName={'DocumentSet'} />,
     comments: [
@@ -64,15 +66,17 @@ const activityItemExamples = [
   {
     key: 2,
     activityDescription: [
-      <Link
-        key={1}
-        className={classNames.nameText}
-        onClick={() => {
-          alert('A name was clicked.');
-        }}
-      >
-        Maconomy
-      </Link>
+      <div className={styles.activityDescriptionWrapper} key={1}>
+        <Link
+          className={classNames.nameText}
+          onClick={() => {
+            alert('A name was clicked.');
+          }}
+        >
+          Maconomy
+        </Link>
+        <Icon iconName="Cancel" className={styles.closeIcon} />
+      </div>
     ],
     activityIcon: <Icon iconName={'Money'} />,
     comments: [
@@ -93,15 +97,17 @@ const activityItemExamples = [
   {
     key: 3,
     activityDescription: [
-      <Link
-        key={1}
-        className={classNames.nameText}
-        onClick={() => {
-          alert('A name was clicked.');
-        }}
-      >
-        Maconomy
-      </Link>
+      <div className={styles.activityDescriptionWrapper} key={1}>
+        <Link
+          className={classNames.nameText}
+          onClick={() => {
+            alert('A name was clicked.');
+          }}
+        >
+          Maconomy
+        </Link>
+        <Icon iconName="Cancel" className={styles.closeIcon} />
+      </div>
     ],
     activityIcon: <Icon iconName={'Warning'} />,
     comments: [
@@ -122,15 +128,17 @@ const activityItemExamples = [
   {
     key: 4,
     activityDescription: [
-      <Link
-        key={1}
-        className={classNames.nameText}
-        onClick={() => {
-          alert('A name was clicked.');
-        }}
-      >
-        IFS
-      </Link>
+      <div className={styles.activityDescriptionWrapper} key={1}>
+        <Link
+          className={classNames.nameText}
+          onClick={() => {
+            alert('A name was clicked.');
+          }}
+        >
+          IFS
+        </Link>
+        <Icon iconName="Cancel" className={styles.closeIcon} />
+      </div>
     ],
     activityIcon: <Icon iconName={'CheckMark'} />,
     comments: [
@@ -151,15 +159,17 @@ const activityItemExamples = [
   {
     key: 5,
     activityDescription: [
-      <Link
-        key={1}
-        className={classNames.nameText}
-        onClick={() => {
-          alert('A name was clicked.');
-        }}
-      >
-        SAP Concur
-      </Link>
+      <div className={styles.activityDescriptionWrapper} key={1}>
+        <Link
+          className={classNames.nameText}
+          onClick={() => {
+            alert('A name was clicked.');
+          }}
+        >
+          SAP Concur
+        </Link>
+        <Icon iconName="Cancel" className={styles.closeIcon} />
+      </div>
     ],
     activityIcon: <Icon iconName={'Money'} />,
     comments: [
@@ -266,7 +276,7 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
 
           <div className={styles.info}>
             <div className={styles.textContent} style={{ color: 'black' }}>
-              You last changed your password on {this.state.lastPasswordChangeDate}.
+              You last changed your password on <span style={{ fontWeight: 'bold' }}>{this.state.lastPasswordChangeDate}</span>.
               Would you like to <a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx">Reset</a> it now?
             </div>
 
@@ -288,7 +298,7 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
             </span>
 
             <span id='eventSummary'>
-            <div className={styles.summaryHeader}>
+              <div className={styles.summaryHeader}>
                 <Icon iconName="Calendar" className={styles.summaryIcon} />
                 <h3>Upcoming events</h3>
               </div>
@@ -390,7 +400,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="DocumentSet" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Time reporting</div>
+                            <div className={styles.titleApp}>Time reporting
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Time reporting, business and management control</div>
                         </div>
@@ -402,7 +414,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="Airplane" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Travel Booking</div>
+                            <div className={styles.titleApp}>Travel Booking
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Travel management and accommodation</div>
                         </div>
@@ -414,19 +428,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="Money" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>SAP Concur</div>
-                          </div>
-                          <div className={styles.descriptionApp}>Systems for expenses, travel, and AP processes</div>
-                        </div>
-                      </a>
-                    </div>
-                    <div role="button" aria-disabled="false" aria-roledescription="draggable"
-                      className={styles.appButton}>
-                      <a href="https://account.activedirectory.windowsazure.com/applications/signin/de2fae87-0d6c-4ba5-aa19-88ba2dda235c?tenantId=58af3eba-510e-4544-8cfd-85f5e0206382" target="_blank" rel="noreferrer" className={styles.app}>
-                        <Icon iconName="Money" className={styles.appIconCircle} />
-                        <div>
-                          <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>SAP Concur</div>
+                            <div className={styles.titleApp}>SAP Concur
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Systems for expenses, travel, and AP processes</div>
                         </div>
@@ -437,7 +441,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="AllCurrency" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Expensify</div>
+                            <div className={styles.titleApp}>Expensify
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Expense management and reporting</div>
                         </div>
@@ -453,7 +459,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="AppIconDefaultList" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Sub-consultant app</div>
+                            <div className={styles.titleApp}>Sub-consultant app
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Register a new internal or external sub-consultant</div>
                         </div>
@@ -465,7 +473,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="ConnectContacts" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>PeopleDoc Employee Portal</div>
+                            <div className={styles.titleApp}>PeopleDoc Employee Portal
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>HR requests and employment documents</div>
                         </div>
@@ -476,7 +486,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="WorkforceManagement" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Workday</div>
+                            <div className={styles.titleApp}>Workday
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>HR and payroll management</div>
                         </div>
@@ -487,7 +499,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="LearningTools" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>LinkedIn Learning</div>
+                            <div className={styles.titleApp}>LinkedIn Learning
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Professional development and training</div>
                         </div>
@@ -498,7 +512,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="SharepointLogo" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>HR Hub</div>
+                            <div className={styles.titleApp}>HR Hub
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Find HR services and information</div>
                         </div>
@@ -513,7 +529,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="ProjectLogo32" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Microsoft Project</div>
+                            <div className={styles.titleApp}>Microsoft Project
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Project planning and management</div>
                         </div>
@@ -524,7 +542,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="TimeSheet" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Smartsheet</div>
+                            <div className={styles.titleApp}>Smartsheet
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Collaborative work management</div>
                         </div>
@@ -535,7 +555,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="TaskManager" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Asana</div>
+                            <div className={styles.titleApp}>Asana
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Task and project management</div>
                         </div>
@@ -546,7 +568,9 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="TaskLogo" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Trello</div>
+                            <div className={styles.titleApp}>Trello
+                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            </div>
                           </div>
                           <div className={styles.descriptionApp}>Visual project management</div>
                         </div>

@@ -2,7 +2,7 @@
 
 .welcomeCard {
   overflow: hidden;
-  padding: 1em;
+  padding: 2em 0;
   color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
 
@@ -342,9 +342,9 @@
   border-radius: 50%;
   cursor: pointer;
   display: inline-flex;
-  height: 45px;
+  height: 42px;
   justify-content: center;
-  width: 45px;
+  width: 42px;
   border: 1px solid;
   margin-right: 23px;
   font-size: 28px;
@@ -400,4 +400,21 @@
   color: black;
   font-weight: bold;
   font-size: 16px;
+}
+
+.activityDescriptionWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeIcon {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.favoriteStarIcon {
+  margin-left: 8px; 
+  color: gray; 
 }
