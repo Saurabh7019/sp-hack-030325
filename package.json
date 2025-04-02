@@ -1,6 +1,6 @@
 {
   "name": "sp-hack-030325",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "private": true,
   "engines": {
     "node": ">=18.17.1 <19.0.0"
