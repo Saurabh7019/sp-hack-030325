@@ -3,7 +3,7 @@
   "solution": {
     "name": "SP Hack 030325",
     "id": "69151121-ba67-4c9c-9332-1972b3329355",
-    "version": "1.1.0.0",
+    "version": "3.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
