@@ -7,4 +7,5 @@ export interface IWelcomeCardState {
     };
     isCalloutVisible: boolean;
     isAddFavoriteCalloutVisible: boolean;
+    isCustomLinkFormVisible: boolean
 }

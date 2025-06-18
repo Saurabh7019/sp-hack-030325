@@ -38,7 +38,7 @@ export default class NewsHack extends React.Component<INewsHackProps> {
                 alt="Card Image" />
             </div>
             <div className={styles.personaCardContent}>
-              <div className={styles.personaCardTitle}>Contoso has recruited 1,000 foreign-born engineers</div>
+              <div className={styles.personaCardTitle}>We have recruited 1,000 foreign-born engineers</div>
               <div className={styles.personaCardDescription}>
                 Foreign talent essential for both the economy and the green transition.
               </div>
