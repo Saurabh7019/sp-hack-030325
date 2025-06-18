@@ -212,7 +212,8 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
         eventSummary: ''
       },
       isCalloutVisible: false,
-      isAddFavoriteCalloutVisible: false
+      isAddFavoriteCalloutVisible: false,
+      isCustomLinkFormVisible: false
     }
 
     this._wcServiceInstance = new WelcomeCardService(serviceScope);
@@ -243,6 +244,10 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
       }
     );
   }
+
+  private toggleCustomLinkForm = (): void => {
+    this.setState({ isCustomLinkFormVisible: !this.state.isCustomLinkFormVisible });
+  };
 
   public render(): React.ReactElement<IWelcomeCardProps> {
     const {
@@ -344,24 +349,12 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                 <span>Trello</span>
               </div>
               <div className={styles.quickLinkItem}>
-                <Icon iconName="TimeSheet" className={styles.appIconCircleFav} />
-                <span>SmartSheet</span>
-              </div>
-              <div className={styles.quickLinkItem}>
                 <Icon iconName="LearningTools" className={styles.appIconCircleFav} />
                 <span>LinkedIn Learning</span>
               </div>
               <div className={styles.quickLinkItem}>
                 <Icon iconName="Money" className={styles.appIconCircleFav} />
                 <span>SAP Concur</span>
-              </div>
-              <div className={styles.quickLinkItem}>
-                <Icon iconName="AllCurrency" className={styles.appIconCircleFav} />
-                <span>Expensify</span>
-              </div>
-              <div className={styles.quickLinkItem}>
-                <Icon iconName="TaskManager" className={styles.appIconCircleFav} />
-                <span>Asana</span>
               </div>
             </div>
           </div>
@@ -442,7 +435,7 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <div>
                           <div className={styles.titleAndStar}>
                             <div className={styles.titleApp}>Expensify
-                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
                             </div>
                           </div>
                           <div className={styles.descriptionApp}>Expense management and reporting</div>
@@ -542,8 +535,8 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <Icon iconName="TimeSheet" className={styles.appIconCircle} />
                         <div>
                           <div className={styles.titleAndStar}>
-                            <div className={styles.titleApp}>Smartsheet
-                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                            <div className={styles.titleApp}>SmartSheet
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
                             </div>
                           </div>
                           <div className={styles.descriptionApp}>Collaborative work management</div>
@@ -556,7 +549,7 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                         <div>
                           <div className={styles.titleAndStar}>
                             <div className={styles.titleApp}>Asana
-                              <Icon iconName="FavoriteStarFill" className={styles.favoriteStarIcon} />
+                              <Icon iconName="FavoriteStar" className={styles.favoriteStarIcon} />
                             </div>
                           </div>
                           <div className={styles.descriptionApp}>Task and project management</div>
@@ -622,16 +615,6 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                     </a>
                   </div>
                   <div role="button" aria-disabled="false" aria-roledescription="draggable">
-                    <a href="https://www.smartsheet.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
-                      <Icon iconName="TimeSheet" className={styles.appIconCircle} />
-                      <div>
-                        <div className={styles.titleAndStar}>
-                          <div className={styles.titleApp}>Smartsheet</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
                     <a href="https://www.linkedin.com/learning/" target="_blank" rel="noreferrer" className={styles.appSmall}>
                       <Icon iconName="LearningTools" className={styles.appIconCircle} />
                       <div>
@@ -651,30 +634,59 @@ export default class WelcomeCard extends React.Component<IWelcomeCardProps, IWel
                       </div>
                     </a>
                   </div>
-                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
-                    <a href="https://www.expensify.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
-                      <Icon iconName="AllCurrency" className={styles.appIconCircle} />
-                      <div>
-                        <div className={styles.titleAndStar}>
-                          <div className={styles.titleApp}>Expensify</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div role="button" aria-disabled="false" aria-roledescription="draggable">
-                    <a href="https://www.asana.com/" target="_blank" rel="noreferrer" className={styles.appSmall}>
-                      <Icon iconName="TaskManager" className={styles.appIconCircle} />
-                      <div>
-                        <div className={styles.titleAndStar}>
-                          <div className={styles.titleApp}>Asana</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
 
-                  <ActionButton iconProps={addFriendIcon} allowDisabledFocus className={styles.addCustomLinkButton}>
+                  <ActionButton
+                    iconProps={addFriendIcon}
+                    allowDisabledFocus
+                    className={styles.addCustomLinkButton}
+                    onClick={this.toggleCustomLinkForm}
+                  >
                     Custom link
                   </ActionButton>
+
+                  {this.state.isCustomLinkFormVisible && (
+                    <form
+                      className={styles.customLinkForm}
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        alert('Custom link added!');
+                        this.setState({ isCustomLinkFormVisible: false });
+                      }}
+                    >
+                      <div className={styles.formGroup}>
+                        <label htmlFor="linkTitle" className={styles.formLabel}>Title:</label>
+                        <input
+                          type="text"
+                          id="linkTitle"
+                          name="linkTitle"
+                          className={styles.formInput}
+                          placeholder="Enter the title"
+                          required
+                        />
+                      </div>
+                      <div className={styles.formGroup}>
+                        <label htmlFor="linkUrl" className={styles.formLabel}>URL:</label>
+                        <input
+                          type="url"
+                          id="linkUrl"
+                          name="linkUrl"
+                          className={styles.formInput}
+                          placeholder="Enter the URL"
+                          required
+                        />
+                      </div>
+                      <div className={styles.formActions}>
+                        <button type="submit" className={styles.submitButton}>Add</button>
+                        <button
+                          type="button"
+                          className={styles.cancelButton}
+                          onClick={this.toggleCustomLinkForm}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  )}
                 </div>
               </div>
             </Callout>

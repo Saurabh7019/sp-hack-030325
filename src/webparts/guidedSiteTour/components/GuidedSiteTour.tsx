@@ -129,10 +129,6 @@ export default class GuidedSiteTour extends React.Component<IGuidedSiteTourProps
       // let placement = 'bottom';
       const target = this._target(item.selector, item.controlId);
 
-      // if (target === 'body') {
-      //   placement = 'center';
-      // }
-
       if (target) {
         const step: ISteps = {
           content: html,
