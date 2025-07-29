@@ -2,9 +2,34 @@
 
 ## Summary
 
-Short summary on functionality and used technologies.
+An employee-centric intranet hub built with SharePoint Framework (SPFx), designed to deliver personalized, connected, and productive experiences across Microsoft 365 - including Teams, Outlook, and Office.
 
-[picture of the solution in action, if possible]
+Key highlights:
+- **Welcome Card**  
+  - Greets users based on their time zone  
+  - Displays user profile  
+  - Provides AI-powered email and calendar summaries  
+  - Shows password alerts  
+  - Consolidated notification center with updates from SAP, Maconomy, IFS, and more  
+  - Includes Quick Links for company-wide resources and personal shortcuts  
+  - Features a Guided Tour and Feedback option for continuous improvement
+
+- **Latest News and Events**  
+  - Keeps employees informed about organizational happenings
+
+- **Dashboard Area**  
+  - Offers a common Viva Connections Dashboard  
+  - Provides a highly customizable Personal Dashboard  
+  - Allows employees to pick and arrange widgets suited to their role  
+  - Integrates data from Microsoft Graph, SharePoint, public APIs, or APIs secured by Entra ID  
+  - No code changes required for customization
+
+- **SharePoint Agent**  
+  - Intelligent assistant for finding and accessing important forms and processes (e.g., procurement, IT requests, travel, leave)
+
+In action this looks like:
+
+![Dashboard view](./assets/Intranet.png)
 
 ## Used SharePoint Framework Version
 
